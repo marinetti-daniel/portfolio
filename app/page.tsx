@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Code2, Cpu, Terminal, Server, Database, Wrench, Briefcase, MapPin } from 'lucide-react';
 import CopyEmailButton from './components/CopyEmailButton';
+import NavLinks from './components/NavLinks';
 
 // Define typing for project data matching the STAR methodology
 interface Project {
@@ -137,22 +138,17 @@ const skillCategories = [
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen overflow-x-clip bg-slate-950 text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
       {/* Dynamic Background Grid Mesh */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
       {/* Navigation */}
       <header className="sticky top-0 z-50 border-b border-slate-900 bg-slate-950/70 backdrop-blur-md">
         <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#" className="text-lg font-bold tracking-tight bg-linear-to-r stream-text from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+          <a href="#" className="text-lg font-bold tracking-tight whitespace-nowrap bg-linear-to-r stream-text from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             &lt;DanielMarinetti /&gt;
           </a>
-          <div className="flex items-center gap-8 text-sm font-medium text-slate-400">
-            <a href="#experience" className="hover:text-indigo-400 transition-colors">Experience</a>
-            <a href="#projects" className="hover:text-indigo-400 transition-colors">Projects</a>
-            <a href="#skills" className="hover:text-indigo-400 transition-colors">Skills</a>
-            <a href="#contact" className="hover:text-indigo-400 transition-colors">Contact</a>
-          </div>
+          <NavLinks />
         </nav>
       </header>
 
@@ -318,8 +314,8 @@ export default function Portfolio() {
           <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Let&apos;s Build Something Impactful</h2>
           <p className="text-slate-400 mb-8">I&apos;m available to start immediately and open to full-stack and frontend software engineering opportunities.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <div className="inline-flex items-center bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-lg transition-all shadow-md">
-              <a href={`mailto:${EMAIL}`} className="inline-flex items-center gap-2 pl-6 pr-3 py-3 text-white font-medium rounded-l-lg hover:bg-slate-800 transition-all active:scale-[0.98]">
+            <div className="inline-flex items-center max-w-full bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-lg transition-all shadow-md">
+              <a href={`mailto:${EMAIL}`} className="inline-flex items-center gap-2 min-w-0 pl-4 sm:pl-6 pr-3 py-3 text-sm sm:text-base text-white font-medium rounded-l-lg hover:bg-slate-800 transition-all active:scale-[0.98] break-all">
                 <Mail className="w-4 h-4" /> {EMAIL}
               </a>
               <span className="w-px h-6 bg-slate-800" />
