@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Code2, Cpu, Terminal, Server, Database, Wrench, Briefcase, MapPin } from 'lucide-react';
+import { Mail, Code2, Cpu, Terminal, Server, Database, Wrench, Briefcase, MapPin, Play } from 'lucide-react';
 import CopyEmailButton from './components/CopyEmailButton';
 import NavLinks from './components/NavLinks';
 
@@ -100,6 +100,17 @@ const projects: Project[] = [
     action: "Had the loader write a status log file at key steps of each run. Built the UI with Django and Dash, polling progress endpoints on a short interval that read the active process's log and returned rendered HTML components, so anyone opening the page could pick up a run already in progress.",
     result: "Gave users real-time visibility into loads covering 100k+ rows daily, and left a full history of every run that the team could review later.",
     tags: ["Python", "Django", "Dash", "MongoDB", "Polling"]
+  },
+  {
+    title: "Wordle: Daily Word Game",
+    description: "A playable Wordle clone with a shared daily word, an unlimited practice mode, and saved stats. Built as its own Next.js app and served on this site.",
+    situation: "I wanted a small, fully working app on my portfolio that visitors can actually play, rather than only read about.",
+    task: "Build a faithful Wordle clone that runs entirely in the browser and plugs into this site without merging the two codebases.",
+    action: "Wrote the game rules as small pure TypeScript functions (two-pass scoring for duplicate letters, a date-based daily word so everyone gets the same puzzle with no server) and covered them with table-driven Vitest tests. Saved progress and stats in localStorage. Deployed it as a separate Next.js app under a /wordle base path, and used a Next.js rewrite so this portfolio serves it at /wordle.",
+    result: "A playable game on the portfolio that lives in its own repo and deploys independently, so either app can change without touching the other.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vitest", "Multi-Zones"],
+    githubUrl: "https://github.com/marinetti-daniel/wordle",
+    liveUrl: "/wordle"
   }
 ];
 
@@ -275,6 +286,22 @@ export default function Portfolio() {
                     </span>
                   ))}
                 </div>
+
+                {/* Only shown for projects that have a live demo or public repo. */}
+                {(project.liveUrl || project.githubUrl) && (
+                  <div className="flex flex-wrap gap-3 mt-6">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium rounded-lg transition-all active:scale-[0.98]">
+                        <Play className="w-4 h-4" /> Play
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white text-sm font-medium rounded-lg transition-all active:scale-[0.98]">
+                        <Code2 className="w-4 h-4" /> Source
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
